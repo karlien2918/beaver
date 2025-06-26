@@ -1,8 +1,8 @@
-package com.example.paymentservice.payment.api;
+package com.example.paymentservice.application.payment.api;
 
 import com.example.paymentservice.common.models.response.ApiResponse;
-import com.example.paymentservice.orchestrator.PaymentOrchestrator;
-import com.example.paymentservice.payment.dto.request.PaymentRequest;
+import com.example.paymentservice.event.PaymentOrchestrator;
+import com.example.paymentservice.application.payment.dto.request.PaymentRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class PaymentController {
 
 	@PostMapping("/payment")
 	public ResponseEntity<ApiResponse<Void>> payment(@RequestBody @Valid PaymentRequest request){
-		paymentOrchestrator.orchestration(request);
+		paymentOrchestrator.pending(request);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

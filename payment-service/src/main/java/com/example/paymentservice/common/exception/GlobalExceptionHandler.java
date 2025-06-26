@@ -1,12 +1,11 @@
 package com.example.paymentservice.common.exception;
 
-import com.example.paymentservice.payment.exception.PaymentFailedException;
+import com.example.paymentservice.application.payment.exception.PaymentFailedException;
 
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

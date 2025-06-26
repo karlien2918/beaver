@@ -1,6 +1,6 @@
-package com.example.paymentservice.payment.application;
+package com.example.paymentservice.application.payment.service;
 
-import com.example.paymentservice.payment.dto.request.PaymentRequest;
+import com.example.paymentservice.application.payment.dto.request.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.paymentservice.payment.exception;
+package com.example.paymentservice.application.payment.exception;
 
 public class PaymentFailedException extends RuntimeException {
 	public PaymentFailedException() {

@@ -1,17 +1,16 @@
-package com.example.paymentservice.orchestrator;
+package com.example.paymentservice.event;
 
-import com.example.paymentservice.payment.application.PaymentService;
-import com.example.paymentservice.payment.dto.request.PaymentRequest;
+import com.example.paymentservice.application.payment.service.PaymentService;
+import com.example.paymentservice.application.payment.dto.request.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class PaymentOrchestrator {
-	private final PaymentService paymentService;
 
-	public void orchestration(PaymentRequest request) {
-		//pending
+	private final PaymentService paymentService;
+	public void pending(PaymentRequest request) {
 		paymentService.pending(request);
 
 
