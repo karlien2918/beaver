@@ -1,0 +1,11 @@
+### GET request to example server
+POST http://localhost:8089/payment
+Content-Type: application/json
+
+{
+  "userId": "userId",
+  "productId": "P12345",
+  "amount": 1234.56
+}
+
+###

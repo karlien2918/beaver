@@ -11,6 +11,17 @@ subprojects {
 
     group = "${group}"
     version = "${version}"
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
 }
 
 java {
@@ -19,9 +30,6 @@ java {
     }
 }
 
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
