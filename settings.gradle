@@ -1,1 +1,2 @@
 rootProject.name = 'beaver'
+include 'config-service'
