@@ -20,9 +20,9 @@ public class PaymentService {
 			System.out.println("save payment Ok.");
 
 			System.out.println("outbox 메시지 전달 :: kafka - uid, payment id? 상태값");
-		}catch (Exception e){
+		} catch (Exception e){
 			//실패케이스로 캔슬처리도 메시지로;
-		}finally {
+		} finally {
 			System.out.println("락 해제");
 		}
 
