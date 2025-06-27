@@ -1,3 +1,4 @@
 rootProject.name = 'beaver'
 include 'config-service'
 include 'payment-service'
+include 'infra-kafka'

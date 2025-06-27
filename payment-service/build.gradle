@@ -13,11 +13,11 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 tasks.register("prepareKotlinBuildScriptModel"){}
 
-tasks.named('test') {
-    useJUnitPlatform()
+tasks.named('bootJar') {
+    mainClass.set('com.example.paymentservice.PaymentServiceApplication')
 }
+
+

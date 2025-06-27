@@ -19,4 +19,7 @@ public class PaymentRequest {
 	@DecimalMin(value = "0.01", message = "Invalid amount.")
 	private BigDecimal amount;
 
+	@NotNull(message = "The PG type is required.")
+	private String type;
+
 }

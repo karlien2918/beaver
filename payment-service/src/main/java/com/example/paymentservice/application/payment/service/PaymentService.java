@@ -12,10 +12,20 @@ public class PaymentService {
 
 	//TODO @Trancaction
 	public void pending(PaymentRequest request) {
-		//0. 결제 정보 생성 및 Payment Id 정보 생성
-		System.out.println("pending ok");
+		try {
 
-		//생성해서 저장
+			System.out.println("분산락 시작 ");
+
+			//0. 결제 정보 생성 및 Payment Id 정보 생성
+			System.out.println("save payment Ok.");
+
+			System.out.println("outbox 메시지 전달 :: kafka - uid, payment id? 상태값");
+		}catch (Exception e){
+			//실패케이스로 캔슬처리도 메시지로;
+		}finally {
+			System.out.println("락 해제");
+		}
+
 	}
 }
 

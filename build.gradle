@@ -12,6 +12,12 @@ subprojects {
     group = "${group}"
     version = "${version}"
 
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
     dependencyManagement {
         imports {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
@@ -28,20 +34,4 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of("${javaVersion}")
     }
-}
-
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-// 테스트 설정
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-repositories {
-    mavenCentral()
 }
