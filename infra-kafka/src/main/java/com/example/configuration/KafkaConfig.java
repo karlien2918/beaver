@@ -1,11 +1,10 @@
-package com.example.infrakafka.config;
+package com.example.configuration;
 
 import org.apache.kafka.clients.admin.NewTopic;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -13,11 +12,9 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
+@EnableKafka
 @Configuration
 public class KafkaConfig {
-
-	// Spring Boot의 기본 KafkaProperties를 사용하거나
-	// Config Server에서 직접 주입받아 사용
 
 	@Bean
 	public ProducerFactory<String, String> producerFactory(KafkaProperties kafkaProperties) {
@@ -35,15 +32,10 @@ public class KafkaConfig {
 	}
 
 	@Bean
-	@RefreshScope
-	public NewTopic exampleTopic(@Value("${app.kafka.topic.name:example-topic}") String topicName,
-			@Value("${app.kafka.topic.partitions:3}") int partitions,
-			@Value("${app.kafka.topic.replicas:3}") int replicas) {
-		return TopicBuilder.name(topicName)
-				.partitions(partitions)
-				.replicas(replicas)
+	public NewTopic paymentEventsTopic() {
+		return TopicBuilder.name("payment-events")
+				.partitions(3)           // 원하는 파티션 수 명시
+				.replicas(1)            // 복제본 수 명시
 				.build();
 	}
-
-
 }

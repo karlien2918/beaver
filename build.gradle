@@ -29,9 +29,6 @@ subprojects {
     }
 
 }
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of("${javaVersion}")
-    }
+tasks.named('bootJar') {
+    enabled = false
 }

@@ -1,8 +1,8 @@
 package com.example.paymentservice.outbox.dto.request;
 
-import lombok.Getter;
+import org.springframework.stereotype.Component;
 
-@Getter
+@Component
 public record OutboxMessage() {
 
 }
