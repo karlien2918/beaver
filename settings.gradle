@@ -1,4 +1,5 @@
 rootProject.name = 'beaver'
 include 'config-service'
 include 'payment-service'
+include 'infra-postgresdb'
 include 'infra-kafka', 'payment-service'
