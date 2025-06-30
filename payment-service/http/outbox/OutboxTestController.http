@@ -2,5 +2,5 @@ POST http://localhost:8089/outbox/test-send
 Content-Type: application/json
 
 {
-  "message": "userId"
+  "message": "kafka test message"
 }
