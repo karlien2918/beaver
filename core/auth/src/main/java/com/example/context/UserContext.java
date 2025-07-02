@@ -15,7 +15,7 @@ public class UserContext {
 		return getJwt().getClaim("email");
 	}
 
-	public static Jwt getJwt(){
+	private static Jwt getJwt(){
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null || !(authentication.getPrincipal() instanceof Jwt jwt)) {
 			throw new IllegalStateException("Not found Jwt");

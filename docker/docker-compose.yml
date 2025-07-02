@@ -65,6 +65,18 @@ services:
     ports:
       - 8080:8080
 
+  vault:
+    image: vault:1.13.3
+    container_name: vault
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "beaver-token"
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+    command: "server -dev -dev-root-token-id=beaver-token"
+    volumes:
+      - ./vault-data:/vault/file
+
 volumes:
   kafka-data:
   postgres-data:
