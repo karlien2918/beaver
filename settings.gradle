@@ -1,5 +1,15 @@
 rootProject.name = 'beaver'
-include ':infra'
+// 공통 모듈
+include ':common'
+
+// 인프라 모듈
+include ':infra:infra-kafka'
+include ':infra:infra-postgresdb'
+
+// 코어 모듈
+include ':core:auth'
+include ':core:security'
+
+// 서비스 모듈
 include ':service:config-service'
 include ':service:payment-service'
-include ':common', ':infra:infra-kafka', ':service:payment-service', 'infra:infra-postgresdb'

@@ -1,7 +1,9 @@
 package com.example.paymentservice.outbox.api;
 
+import com.example.context.UserContext;
 import com.example.paymentservice.outbox.dto.request.OutboxMessage;
 import com.example.paymentservice.outbox.service.OutboxService;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +28,13 @@ public class OutBoxTestController {
 	public ResponseEntity<OutboxMessage> testMapper(String email){
 		final OutboxMessage message = outboxService.sendOutBoxMapperTest(email);
 		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	@GetMapping("/me")
+	public ResponseEntity<?> getMyProfile() {
+		String userId = UserContext.getUserId();
+
+		return ResponseEntity.ok(Map.of(
+				"userId", userId
+		));
 	}
 }

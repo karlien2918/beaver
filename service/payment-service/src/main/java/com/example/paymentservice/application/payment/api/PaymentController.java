@@ -17,15 +17,9 @@ public class PaymentController {
 
 	private final PaymentOrchestrator paymentOrchestrator;
 
-	/**
-	 * 모든 요청 로그는 AOP에서 처리
-	 * @param request
-	 * @return
-	 */
-
 	@PostMapping("/payment")
-	public ResponseEntity<ApiResponse<Void>> payment(@RequestBody @Valid PaymentRequest request){
-		paymentOrchestrator.pending(request);
+	public ResponseEntity<ApiResponse<Void>> createOrder(@RequestBody @Valid PaymentRequest request){
+		paymentOrchestrator.createOrder(request);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

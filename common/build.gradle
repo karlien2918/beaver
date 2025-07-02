@@ -1,9 +1,15 @@
+plugins {
+    id 'java-library'
+}
+
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
-    implementation 'org.springframework.retry:spring-retry'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    api 'org.springframework.cloud:spring-cloud-starter-config'
+    api 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+    api 'io.github.resilience4j:resilience4j-spring-boot3:2.3.0'
+    api 'io.github.resilience4j:resilience4j-retry:2.3.0'
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    api 'org.springframework.boot:spring-boot-devtools'
+    api 'org.mapstruct:mapstruct:1.5.5.Final'
 }
 
 tasks.register("prepareKotlinBuildScriptModel"){}

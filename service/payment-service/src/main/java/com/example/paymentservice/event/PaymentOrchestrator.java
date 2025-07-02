@@ -1,7 +1,7 @@
 package com.example.paymentservice.event;
 
-import com.example.paymentservice.application.payment.service.PaymentService;
 import com.example.paymentservice.application.payment.dto.request.PaymentRequest;
+import com.example.paymentservice.application.payment.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 public class PaymentOrchestrator {
 
 	private final PaymentService paymentService;
-	public void pending(PaymentRequest request) {
+	public void createOrder(PaymentRequest request) {
 		paymentService.pending(request);
-
-
 
 
 		// 1. authorized

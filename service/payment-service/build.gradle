@@ -8,10 +8,8 @@ dependencies {
     implementation project(":infra:infra-kafka")
     implementation project(":infra:infra-postgresdb")
     implementation project(":common")
-    implementation 'org.modelmapper:modelmapper:3.2.4'
-    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    implementation 'org.springframework.kafka:spring-kafka'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation project(":core:auth")
+    implementation project(":core:security")
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'

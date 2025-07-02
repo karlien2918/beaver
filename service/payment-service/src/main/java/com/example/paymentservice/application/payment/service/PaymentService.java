@@ -1,23 +1,38 @@
 package com.example.paymentservice.application.payment.service;
 
+import com.example.paymentservice.application.payment.dto.request.OrderCreateRequest;
 import com.example.paymentservice.application.payment.dto.request.PaymentRequest;
+import com.example.paymentservice.application.payment.mapper.PaymentMapper;
+import com.example.paymentservice.application.payment.repository.PaymentRepository;
+import com.example.paymentservice.outbox.service.OutboxPublisher;
+import com.example.paymentservice.utils.UuidUtils;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
-	private final ApplicationEventPublisher publisher;
 
-	//TODO @Trancaction
+	private final PaymentMapper paymentMapper;
+	private final PaymentRepository paymentRepository;
+	private final OutboxPublisher outboxPublisher;
+
+
+	@Transactional
 	public void pending(PaymentRequest request) {
 		try {
 
-			System.out.println("분산락 시작 ");
+			//TODO 분산락
+			final String orderUuid = UuidUtils.generator();
 
-			//0. 결제 정보 생성 및 Payment Id 정보 생성
-			System.out.println("save payment Ok.");
+			//유효한 상품인지
+			//유저 정보 결제
+
+			OrderCreateRequest orderRequest = new OrderCreateRequest(null, null, null, null);
+			paymentRepository.save(paymentMapper.toEntity(orderRequest));
+
+
 
 			System.out.println("outbox 메시지 전달 :: kafka - uid, payment id? 상태값");
 		} catch (Exception e){
@@ -25,7 +40,6 @@ public class PaymentService {
 		} finally {
 			System.out.println("락 해제");
 		}
-
 	}
 }
 
