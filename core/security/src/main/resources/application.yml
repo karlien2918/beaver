@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: security
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/test-realm
+
+jwt:
+  secret: your-256-bit-secret-key-goes-here-should-be-long-enough
+  access-token-validity-ms: 3600000

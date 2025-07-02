@@ -1,0 +1,12 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+	implementation project(':common')
+	api 'org.springframework.kafka:spring-kafka'
+}
+
+tasks.named('bootJar') {
+	enabled = false
+}

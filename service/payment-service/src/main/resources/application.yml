@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: payment-service
+  config:
+    import:
+      optional:configserver:http://localhost:8888
+  kafka:
+    consumer:
+      group-id: payment-group
+    bootstrap-servers: localhost:29092
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/test-realm
+
+server:
+  port: 8089
+
+resilience4j:
+  retry:
+    instances:
+      outboxRetry:
+        max-attempts: 3
+        wait-duration: 2s
+        retry-exceptions:
+          - java.lang.RuntimeException
+        ignore-exceptions:
+          - java.lang.IllegalArgumentException

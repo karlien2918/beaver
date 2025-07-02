@@ -1,0 +1,26 @@
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation project(":infra:infra-kafka")
+    implementation project(":infra:infra-postgresdb")
+    implementation project(":common")
+    implementation project(":core:auth")
+    implementation project(":core:security")
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}
+
+tasks.named('bootJar') {
+    mainClass.set('com.example.paymentservice.PaymentServiceApplication')
+}
+
+

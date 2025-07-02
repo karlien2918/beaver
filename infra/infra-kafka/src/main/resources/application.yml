@@ -1,0 +1,90 @@
+spring:
+  application:
+    name: infra-kafka
+  config:
+    import:
+      optional:configserver:http://localhost:8888
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+
+      batch-size: 163842
+      linger-ms: 5
+      buffer-memory: 33554432
+
+      compression-type: snappy
+
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+        request.timeout.ms: 30000
+        max.request.size: 1048576  # 1MB
+    consumer:
+      group-id: ${spring.application.name}-consumer-group
+
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval-ms: 1000
+
+      session-timeout-ms: 30000
+      heartbeat-interval-ms: 3000
+
+      max-poll-records: 500
+      fetch-min-size: 1
+      fetch-max-wait-ms: 500
+
+      properties:
+        spring.json.trusted.packages: "com.example.dto,com.example.model"
+        max.partition.fetch.bytes: 1048576  # 1MB
+        isolation.level: read_committed
+
+    listener:
+      ack-mode: batch
+      concurrency: 3
+      poll-timeout: 3000
+      missing-topics-fatal: false
+
+      retry:
+        topic:
+          enabled: true
+          attempts: 3
+          delay: 1000
+          multiplier: 2.0
+
+    admin:
+      properties:
+        bootstrap.servers: localhost:9092
+        request.timeout.ms: 30000
+        connections.max.idle.ms: 300000
+      auto-create: false
+    security:
+      protocol: PLAINTEXT  # PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL
+
+    ssl:
+      key-store-location: file:/Users/t8g-2410-pn-001/Documents/beaver/beaver/infra-kafka/keystore/kafka.client.keystore.jks
+      key-store-password: 123456
+      key-store-type: JKS
+      key-password: 123456
+
+      protocol: TLSv1.2
+      enabled-protocols: TLSv1.2,TLSv1.3
+
+    properties:
+      sasl.mechanism: PLAIN  # PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, GSSAPI
+      sasl.jaas.config: |
+        org.apache.kafka.common.security.plain.PlainLoginModule required
+        username="kafka-user"
+        password="kafka-password";
+
+      connections.max.idle.ms: 540000
+      reconnect.backoff.ms: 50
+      retry.backoff.ms: 100
+      metadata.max.age.ms: 300000
+      client.id: ${spring.application.name}-${random.uuid}
