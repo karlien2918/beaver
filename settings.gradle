@@ -11,5 +11,6 @@ include ':core:auth'
 include ':core:security'
 
 // 서비스 모듈
+include ':service:user-service'
 include ':service:config-service'
 include ':service:payment-service'
