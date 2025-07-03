@@ -8,7 +8,7 @@ dependencies {
     implementation project(":infra:infra-kafka")
     implementation project(":infra:infra-postgresdb")
     implementation project(":common")
-    implementation project(":core:auth")
+    implementation project(":auth:jwt")
     implementation project(":core:security")
 
     compileOnly 'org.projectlombok:lombok'

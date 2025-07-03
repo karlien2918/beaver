@@ -7,8 +7,14 @@ include ':infra:infra-kafka'
 include ':infra:infra-postgresdb'
 
 // 코어 모듈
-include ':core:auth'
 include ':core:security'
+include ':core:grpc'
+
+
+// 인증 모듈
+include ':auth:jwt'
+include ':auth:keycloak'
+
 
 // 서비스 모듈
 include ':service:user-service'

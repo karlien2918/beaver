@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'com.google.protobuf' version '0.9.4'
+}
+
+dependencies {
+    implementation 'io.grpc:grpc-services:1.63.0'
+    implementation 'io.grpc:grpc-netty-shaded:1.63.0'
+    implementation 'io.grpc:grpc-stub:1.63.0'
+    testImplementation 'org.springframework.grpc:spring-grpc-test:1.73.0'
+    testImplementation 'io.grpc:grpc-testing:1.73.0'
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc'
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {
+                option 'jakarta_omit'
+                option '@generated=omit'
+            }
+        }
+    }
+}
+
+tasks.named('bootJar') {
+    enabled = false
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
