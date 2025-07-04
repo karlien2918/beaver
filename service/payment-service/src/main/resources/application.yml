@@ -3,7 +3,8 @@ spring:
     name: payment-service
   config:
     import:
-      optional:configserver:http://localhost:8888
+      - optional:configserver:http://localhost:8888
+      - classpath:application-jpa.yml
   kafka:
     consumer:
       group-id: payment-group

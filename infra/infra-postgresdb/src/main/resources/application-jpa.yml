@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: infra-postgresdb
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/beaver-user-db
+    username: admin
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
