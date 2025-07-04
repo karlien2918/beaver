@@ -47,7 +47,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./service/payment-service                                # Docker build context (보통 프로젝트 루트)
+          context: ./                              # Docker build context (보통 프로젝트 루트)
           push: true
           platforms: linux/arm64
           # 이미지 빌드 후 실제로 푸시까지 수행
