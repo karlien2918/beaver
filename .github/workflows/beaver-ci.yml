@@ -20,9 +20,9 @@ jobs:
         with:
           filters: |
             payment-service:
-              - 'payment-service/**'
+              - 'service/payment-service/**'
             user-service:
-              - 'user-service/**'
+              - 'service/user-service/**'
 
       - name: Generate Dynamic Matrix
         id: set-matrix
