@@ -26,6 +26,7 @@ public class PaymentService {
 			//TODO 분산락
 			final String orderUuid = UuidUtils.generator();
 
+
 			//유효한 상품인지
 			//유저 정보 결제
 
@@ -35,6 +36,7 @@ public class PaymentService {
 
 
 			System.out.println("outbox 메시지 전달 :: kafka - uid, payment id? 상태값");
+			System.out.println("return ok");
 		} catch (Exception e){
 			//실패케이스로 캔슬처리도 메시지로;
 		} finally {
