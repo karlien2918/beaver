@@ -13,7 +13,6 @@ FROM eclipse-temurin:17-jdk
 
 ARG MODULE
 
-COPY --from=builder /beaver/service/${MODULE}/build/libs/*.jar ${MODULE}.jar
+COPY --from=builder /beaver/service/${MODULE}/build/libs/*.jar app.jar
 
-ENTRYPOINT ["java", "-jar"]
-CMD ["${MODULE}.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
