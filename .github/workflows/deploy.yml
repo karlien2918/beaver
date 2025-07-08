@@ -9,23 +9,29 @@ on:
         type: choice
         options:
           - user-service
-          - billing
-          - analytics
+          - payment-service
 
 jobs:
+  set-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+    steps:
+      - name: Set selected module as matrix
+        id: set
+        run: |
+          echo "matrix={\"module\":[\"${{ github.event.inputs.module }}\"]}" >> $GITHUB_OUTPUT
+
   deploy:
+    needs: set-matrix
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        module: [${{ github.event.inputs.module }}]  # 입력된 값으로 matrix 구성
-
+      matrix: ${{ fromJson(needs.set-matrix.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Print selected module
-        run: echo "Deploying ${{ matrix.module }}"
-
-      - name: Add k8s deployment
+      - name: Deploy selected module
         run: |
+          echo "Deploying ${{ matrix.module }}"
           git add k8s/${{ matrix.module }}-deployment.yaml
