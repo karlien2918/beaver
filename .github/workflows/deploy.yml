@@ -1,0 +1,31 @@
+name: Deploy K8s Module
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: '배포할 모듈 선택'
+        required: true
+        type: choice
+        options:
+          - user-service
+          - billing
+          - analytics
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module: [${{ github.event.inputs.module }}]  # 입력된 값으로 matrix 구성
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Print selected module
+        run: echo "Deploying ${{ matrix.module }}"
+
+      - name: Add k8s deployment
+        run: |
+          git add k8s/${{ matrix.module }}-deployment.yaml
